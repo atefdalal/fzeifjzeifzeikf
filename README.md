@@ -2,7 +2,7 @@
 USE m07_drone;
 
 CREATE TABLE utilisateur (
-    idutilisateur INT(11) PRIMARY KEY AUTO_INCREMENT,
+    idutilisateur INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(45),
     prenom VARCHAR(45),
     email VARCHAR(45),
