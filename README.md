@@ -81,8 +81,6 @@ CREATE TABLE etats (
 1. Vérifier si tu as déjà une clé SSH
 Avant de générer une nouvelle clé SSH, il est important de vérifier si tu en as déjà une sur ton ordinateur. Pour cela, ouvre Git Bash et tape la commande suivante :
 
-bash
-Copier le code
 ls -al ~/.ssh
 Cela listera les fichiers dans le dossier .ssh de ton utilisateur. Si tu vois des fichiers comme id_rsa et id_rsa.pub, cela signifie que tu as déjà une paire de clés SSH. Tu peux les utiliser directement, mais si tu veux en créer une nouvelle, passe à l'étape suivante.
 
@@ -90,31 +88,20 @@ Cela listera les fichiers dans le dossier .ssh de ton utilisateur. Si tu vois de
 Si tu n'as pas encore de clé SSH ou si tu veux en créer une nouvelle, suis ces étapes :
 
 Dans Git Bash, entre la commande suivante pour générer une nouvelle clé SSH :
-
-bash
-Copier le code
-ssh-keygen -t rsa -b 4096 -C "ton_email@example.com"
+ssh-keygen -t rsa -b 4096 -C "atef.dalal2005@gmail.com"
 L'option -t rsa spécifie que tu utilises l'algorithme RSA (c'est standard).
 L'option -b 4096 spécifie la taille de la clé (4096 bits est une bonne sécurité).
 Remplace "ton_email@example.com" par ton adresse email GitHub.
-Tu devrais voir une sortie comme celle-ci :
 
-vbnet
-Copier le code
+Tu devrais voir une sortie comme celle-ci :
 Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/YourName/.ssh/id_rsa): [Appuie sur Entrée]
 Appuie simplement sur Entrée pour accepter l'emplacement par défaut. Tu peux aussi définir un mot de passe pour protéger ta clé si tu le souhaites.
 
 3. Ajouter ta clé SSH à l'agent SSH
 Maintenant que tu as généré une clé SSH, tu dois l'ajouter à l'agent SSH (un programme qui gère les clés SSH) pour qu'il puisse l'utiliser automatiquement lors des connexions. Tape cette commande dans Git Bash pour démarrer l'agent SSH :
-
-bash
-Copier le code
 eval "$(ssh-agent -s)"
 Ensuite, ajoute ta clé SSH à l'agent avec cette commande :
-
-bash
-Copier le code
 ssh-add ~/.ssh/id_rsa
 Cette commande suppose que tu as utilisé le nom de fichier par défaut pour la clé (id_rsa). Si tu as choisi un autre nom, remplace id_rsa par le bon nom.
 
