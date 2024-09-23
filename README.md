@@ -1,73 +1,66 @@
 # testttt
-CREATE DATABASE drone_management;
-USE drone_management;
+USE m07_drone;
 
--- Table utilisateur
 CREATE TABLE utilisateur (
     idutilisateur INT(11) PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(45) NOT NULL,
-    prenom VARCHAR(45) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    naissance DATE NOT NULL,
-    pseudo VARCHAR(45) NOT NULL
+    nom VARCHAR(45),
+    prenom VARCHAR(45),
+    email VARCHAR(45),
+    naissance,
+    pseudo VARCHAR(45) 
 );
 
--- Table drone
 CREATE TABLE drone (
     iddrone INT(11) PRIMARY KEY AUTO_INCREMENT,
-    marque VARCHAR(45) NOT NULL,
-    modele VARCHAR(45) NOT NULL,
-    refDrone VARCHAR(45) NOT NULL,
-    dateAchat TIMESTAMP NOT NULL
+    marque VARCHAR(45),
+    modele VARCHAR(45),
+    refDrone VARCHAR(45),
+    dateAchat TIMESTAMP 
 );
 
--- Table vol
 CREATE TABLE vol (
-    idvol INT(11) PRIMARY KEY AUTO_INCREMENT,
-    idutilisateurs INT(11) NOT NULL,
-    iddrone INT(11) NOT NULL,
+    idvol INT PRIMARY KEY AUTO_INCREMENT,
+    idutilisateurs INT,
+    iddrone INT NOT NULL,
     dateVol TIMESTAMP NOT NULL,
     FOREIGN KEY (idutilisateurs) REFERENCES utilisateur(idutilisateur) ON DELETE CASCADE,
     FOREIGN KEY (iddrone) REFERENCES drone(iddrone) ON DELETE CASCADE
 );
 
--- Table listeCommandes
 CREATE TABLE listeCommandes (
-    idlisteCommandes INT(11) PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(45) NOT NULL
+    idlisteCommandes INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(45)
 );
 
--- Table commandes
 CREATE TABLE commandes (
     idcommandes INT(11) PRIMARY KEY AUTO_INCREMENT,
-    idvol INT(11) NOT NULL,
-    idlisteCommandes INT(11) NOT NULL,
-    valeur INT(11) NOT NULL,
-    time_ms INT(11) NOT NULL,
+    idvol INT(11),
+    idlisteCommandes INT(11),
+    valeur INT(11),
+    time_ms INT(11),
     FOREIGN KEY (idvol) REFERENCES vol(idvol) ON DELETE CASCADE,
     FOREIGN KEY (idlisteCommandes) REFERENCES listeCommandes(idlisteCommandes) ON DELETE CASCADE
 );
 
--- Table etats
 CREATE TABLE etats (
-    idetats INT(11) PRIMARY KEY AUTO_INCREMENT,
-    idvol INT(11) NOT NULL,
-    pitch FLOAT NOT NULL,
-    roll FLOAT NOT NULL,
-    yaw FLOAT NOT NULL,
-    vgx FLOAT NOT NULL,
-    vgy FLOAT NOT NULL,
-    vgz FLOAT NOT NULL,
-    templ INT(11) NOT NULL,
-    temph INT(11) NOT NULL,
-    tof INT(11) NOT NULL,
-    h INT(11) NOT NULL,
-    bat INT(11) NOT NULL,
-    baro FLOAT NOT NULL,
-    time INT(11) NOT NULL,
-    agx FLOAT NOT NULL,
-    agy FLOAT NOT NULL,
-    agz FLOAT NOT NULL,
+    idetats INT PRIMARY KEY AUTO_INCREMENT,
+    idvol INT,
+    pitch FLOAT,
+    roll FLOAT,
+    yaw FLOAT,
+    vgx FLOAT,
+    vgy FLOAT,
+    vgz FLOAT,
+    templ INT,
+    temph INT,
+    tof INT,
+    h INT,
+    bat INT,
+    baro FLOAT,
+    time INT,
+    agx FLOAT,
+    agy FLOAT,
+    agz FLOAT,
     FOREIGN KEY (idvol) REFERENCES vol(idvol) ON DELETE CASCADE
 );
 
@@ -83,6 +76,8 @@ CREATE TABLE etats (
 -
 --
 ------
+
+
 1. Vérifier si tu as déjà une clé SSH
 Avant de générer une nouvelle clé SSH, il est important de vérifier si tu en as déjà une sur ton ordinateur. Pour cela, ouvre Git Bash et tape la commande suivante :
 
